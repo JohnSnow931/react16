@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Button } from 'antd';
+import Nav from 'Component/Nav';
+import Home from 'Component/Home';
+import Login from 'Component/Login';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
-
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button>我是一个按钮</Button>
+    <BrowserRouter>
+      <div className="app">
+        <Nav />
+        <div className="route-container">
+          <Route path="/" exact component={Home} />
+          <Route path="/login" component={Login} />
+        </div>
       </div>
+    </BrowserRouter>
     );
   }
 }

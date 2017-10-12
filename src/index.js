@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
-const store = createStore();
+// const store = createStore();
