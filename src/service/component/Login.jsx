@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import { Form, Input, Button, Icon } from 'antd';
 
 const FormItem = Form.Item;
@@ -7,6 +6,16 @@ const FormItem = Form.Item;
 class Login extends Component {
   constructor(props){
     super(props);
+  }
+  login = () => {
+    const that = this;
+    this.props.form.validateFields({}, function (err, data) {
+      if(!err){
+        localStorage.setItem('userName', data.username);
+        localStorage.setItem('password', encodeURIComponent(data.password));
+        that.props.history.push('/')
+      }
+    });
   }
   render(){
     const { getFieldDecorator } = this.props.form;
@@ -27,7 +36,7 @@ class Login extends Component {
           )}
         </FormItem>
       </Form>
-      <Button type="primary" size="large">Login</Button>
+      <Button type="primary" size="large" onClick={this.login}>Login</Button>
     </div>)
   }
 }
