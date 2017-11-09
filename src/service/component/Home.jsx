@@ -50,7 +50,6 @@ class Home extends Component {
   render(){
     return (<div>
       hellow;
-      <Chat></Chat>
       <Table columns={columns} dataSource={data} pagination={{ pageSize: 50 }} scroll={{ y: 240 }} />
     </div>);
   }

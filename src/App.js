@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Nav from 'Component/Nav';
 import Home from 'Component/Home';
 import Login from 'Component/Login';
+import Chat from 'Component/Chat';
 import PrivateRoute from 'Component/PrivateRoute';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
@@ -18,6 +19,7 @@ class App extends Component {
               <div className="route-container">
                 <Switch>
                   <Route path="/" exact component={Home}/>
+                  <Route path="/chat" component={Chat}/>
                   <Route render={() => <div> oops! jump to a strange place </div>}/>
                 </Switch>
               </div>

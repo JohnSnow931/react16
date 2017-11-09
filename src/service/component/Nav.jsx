@@ -27,6 +27,7 @@ class Nav extends Component{
         <li><NavLink className='nav-link' to='/table' activeClassName='active'>表格</NavLink></li>
         <li><NavLink className='nav-link' to='/map' activeClassName='active'>地图嵌入</NavLink></li>
         <li><NavLink className='nav-link' to='/charts' activeClassName='active'>图标</NavLink></li>
+        <li><NavLink className='nav-link' to='/chat' activeClassName='active'>Chat</NavLink></li>
       </ul>
     </div>)
   }
