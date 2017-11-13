@@ -3,6 +3,8 @@ import Nav from 'Component/Nav';
 import Home from 'Component/Home';
 import Login from 'Component/Login';
 import Chat from 'Component/Chat';
+import Error from 'Component/Error';
+import ErrorWrapper from 'Component/ErrorWrapper';
 import PrivateRoute from 'Component/PrivateRoute';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
@@ -20,6 +22,7 @@ class App extends Component {
                 <Switch>
                   <Route path="/" exact component={Home}/>
                   <Route path="/chat" component={Chat}/>
+                  <Route path="/error" render={() => (<ErrorWrapper><Error /></ErrorWrapper>) } />
                   <Route render={() => <div> oops! jump to a strange place </div>}/>
                 </Switch>
               </div>
