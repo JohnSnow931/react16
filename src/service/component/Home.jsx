@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-import 'rc-drawer/assets/index.css';
 import { NavLink } from 'react-router-dom';
 import Chat from 'Component/Chat';
-import Drawer from 'rc-drawer';
-import { Table, Button, Calendar } from 'antd';
+import Drawer from 'Component/Drawer';
+import { Table, Button, Calendar, Tag } from 'antd';
+const { CheckableTag } = Tag;
 const userInfoStore = {
   getUser: function () {
     return this.username;
+  }
+}
+
+class MyTag extends React.Component {
+  state = { checked: true };
+  handleChange = (checked) => {
+    this.setState({ checked });
+  }
+  render() {
+    return <CheckableTag {...this.props} checked={this.state.checked} onChange={this.handleChange} />;
   }
 }
 
@@ -41,14 +51,8 @@ class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
-      docked: false,
-      open: false,
-      transitions: true,
-      touch: true,
-      enableDragHandle: true,
-      position: 'left',
-      dragToggleDistance: 30,
-    };
+      drawerVisible: false,
+    }
   }
   componentWillMount(){
     console.log(this.props);
@@ -58,47 +62,32 @@ class Home extends Component {
 
     }
   }
-  onOpenChange = (open) => {
-    console.log('onOpenChange', open);
-    this.setState({ open });
-  }
-  onDock = () => {
-    const docked = !this.state.docked;
-    this.setState({
-      docked,
-    });
-    if (!docked) {
-      this.onOpenChange(false);
-    }
-  }
   openDrawer = () =>{
     this.setState({
-      open: true
-    })
-  }
-  onCloseDrawer = () => {
-    this.setState({
-      drawerVisible: false
+      drawerVisible: true
     })
   }
   render(){
-    const drawerProps = {
-      docked: this.state.docked,
-      open: this.state.open,
-      touch: this.state.touch,
-      enableDragHandle: this.state.enableDragHandle,
-      position: this.state.position,
-      dragToggleDistance: this.state.dragToggleDistance,
-      transitions: this.state.transitions,
-      onOpenChange: this.onOpenChange,
-    };
     return (<div>
-      <Drawer
-        sidebar={<div><input type="text"/></div>} {...drawerProps}
-      >
-        <Button onClick={this.openDrawer}>打开抽屉</Button>;
-        <Table columns={columns} dataSource={data} pagination={{ pageSize: 50 }} scroll={{ y: 240 }} />
-      </Drawer>
+      <Button onClick={this.openDrawer}>打开抽屉</Button>;
+      <Table columns={columns} dataSource={data} pagination={{ pageSize: 50 }} scroll={{ y: 240 }} />
+      <div className="tag-box">
+        <div>
+          <MyTag>Tag1</MyTag>
+          <MyTag>Tag2</MyTag>
+          <MyTag>Tag3</MyTag>
+        </div>
+        <div>
+          <MyTag>Tag1</MyTag>
+          <MyTag>Tag2</MyTag>
+          <MyTag>Tag3</MyTag>
+        </div>
+        <div>
+          <MyTag>Tag1</MyTag>
+          <MyTag>Tag2</MyTag>
+          <MyTag>Tag3</MyTag>
+        </div>
+      </div>
     </div>);
   }
 };
