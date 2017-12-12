@@ -61,12 +61,12 @@ class Drawer extends Component {
 }
 
 Drawer.propTypes = {
-  visible : PropTypes.bool.isRequired, // 控制抽屉的打开/关闭
+  visible : PropTypes.bool.isRequired, // 控制抽屉的打开/关闭😀
   mask: PropTypes.bool, // 是否显示遮罩
-  onClose: PropTypes.func, // 关闭时的回调
+  onClose: PropTypes.func, // 关闭时的回调😀
   onOpen: PropTypes.func, // 打开时的回调
   width: PropTypes.number, // 宽度
-  duration: PropTypes.number, // 打开/关闭时间
+  duration: PropTypes.number, // 打开/关闭时间 🌀
   maskStyle: PropTypes.any, // 给遮罩层的样式
   maskClass: PropTypes.string, // 给遮罩层的类名
   contentClass: PropTypes.string, // 给内容层的类名
@@ -74,8 +74,8 @@ Drawer.propTypes = {
   okButton: PropTypes.bool, // 是否显示确定按钮
   cancelButton: PropTypes.bool, // 是否显示取消按钮
   closable:PropTypes.bool, // 是都显示右上角的关闭图标
-  direction: PropTypes.string, // 打开方向，默认RIGHT[LEFT/TOP/BOTTOM]
-  proxyProps: PropTypes.bool, // 属性代理
+  direction: PropTypes.string, // 打开方向，默认RIGHT[LEFT/TOP/BOTTOM] 😀
+  proxyProps: PropTypes.bool, // 属性代理【暂时不用】
   scroll: PropTypes.bool // 内容从超过容器高宽时是否显示滚动条
 };
 
