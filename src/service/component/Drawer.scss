@@ -1,0 +1,80 @@
+.react-amazing-drawer-mask{
+  height: 100%;
+  width: 100%;
+  background:rgba(0, 0, 0, 0.5);
+  position:fixed;
+  top:0;
+  left: 0;
+  z-index: 10000;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  .content{
+    position: absolute;
+    background: #FFF;
+    overflow: auto;
+    &.right{
+      right: 0;
+      height: 100%;
+      width: 600px;
+    }
+    &.left{
+      left: 0;
+      height: 100%;
+      width: 600px;
+    }
+    &.top{
+      top: 0;
+      width: 100%;
+      height: 450px;
+    }
+    &.bottom{
+      bottom: 0;
+      width: 100%;
+      height: 450px;
+    }
+  }
+}
+
+.react-amazing-drawer-enter,.react-amazing-drawer-leave-active{
+  &.react-amazing-drawer-mask{
+    opacity: 0;
+    transition: all 0.5s ease;
+    .content{
+      transition: all 0.5s ease;
+      &.right{
+        right: -100%;
+      }
+      &.left{
+        left: -100%;
+      }
+      &.top{
+        top: -100%;
+      }
+      &.bottom{
+        bottom: -100%;
+      }
+    }
+  }
+}
+
+.react-amazing-drawer-enter-active{
+  &.react-amazing-drawer-mask{
+    opacity: 1;
+    transition: all 0.5s ease;
+    .content{
+      transition: all 0.5s ease;
+      &.right{
+        right: 0;
+      }
+      &.left{
+        left: 0;
+      }
+      &.top{
+        top: 0;
+      }
+      &.bottom{
+        bottom: 0;
+      }
+    }
+  }
+}

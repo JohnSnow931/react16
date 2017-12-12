@@ -67,10 +67,18 @@ class Home extends Component {
       drawerVisible: true
     })
   }
+  closeDrawer = () =>{
+    this.setState({
+      drawerVisible: false
+    })
+  }
   render(){
     return (<div>
       <Button onClick={this.openDrawer}>打开抽屉</Button>;
       <Table columns={columns} dataSource={data} pagination={{ pageSize: 50 }} scroll={{ y: 240 }} />
+      <Drawer visible={this.state.drawerVisible} direction="BOTTOM" onClose={this.closeDrawer}>
+        天哪
+      </Drawer>
       <div className="tag-box">
         <div>
           <MyTag>Tag1</MyTag>

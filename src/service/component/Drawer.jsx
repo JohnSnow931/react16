@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {createPortal} from 'react-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Form, Input, Button, Icon } from 'antd';
 import PropTypes from 'prop-types';
+import './Drawer.scss' ;
 
 
 class Drawer extends Component {
@@ -10,6 +12,7 @@ class Drawer extends Component {
     // 创建div,用户渲染抽屉
     const doc = window.document;
     this.node = doc.createElement('div');
+    this.node.id = 'react-amazing-drawer';
     doc.body.appendChild(this.node);
   }
 
@@ -18,7 +21,9 @@ class Drawer extends Component {
    * @param e
    */
   onClose = (e) => {
+    console.log('close');
     if(typeof this.props.onClose === 'function'){
+
       this.props.onClose()
     }
   }
@@ -31,28 +36,27 @@ class Drawer extends Component {
     e.stopPropagation();
   }
   render(){
-    const { visible, width } = this.props;
-    const positionLeft = visible ? '0' : width;
-    const opacity = visible ? '0.5' : '0';
-    const display = visible ? 'block' : 'none';
-    return createPortal(<div className="re-drawer" style={
-      {
-        height: '100%',
-        width: '100%',
-        background:`rgba(0, 0, 0, ${opacity})`,
-        position:'fixed',
-        top:0,
-        left: 0,
-        zIndex: 10000,
-        transition: 'all 0.5s ease',
-        overflow:'scroll',
-        display
-      }
-    } onClick={this.onClose}>
-      <div className="content" onClick={this.preventClick} style={{ backgroundColor: 'white', width: width, height:'100%', float:'right' }}>
-        {this.props.children}
-      </div>
-    </div>, this.node)
+    const { visible, width, duration, direction } = this.props;
+    return createPortal(
+      <ReactCSSTransitionGroup
+        transitionName="react-amazing-drawer"
+        component="div"
+        transitionEnterTimeout={duration}
+        transitionLeaveTimeout={duration}
+      >
+        {
+          visible ? <div
+            onClick={this.onClose}
+            key="react-amazing-drawer"
+            className="react-amazing-drawer-mask"
+          >
+            <div className={`content ${direction.toLowerCase()}`} onClick={this.preventClick}>
+              {this.props.children}
+            </div>
+          </div> : ''
+        }
+      </ReactCSSTransitionGroup>
+      , this.node)
   }
 }
 
@@ -78,7 +82,9 @@ Drawer.propTypes = {
 Drawer.defaultProps = {
   visible: false,
   mask: true,
-  width: 600
+  width: 600,
+  duration: 800,
+  direction: 'RIGHT'
 }
 
 export default Drawer;
