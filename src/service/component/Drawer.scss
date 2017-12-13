@@ -1,12 +1,11 @@
 .react-amazing-drawer-mask{
   height: 100%;
   width: 100%;
-  background:rgba(0, 0, 0, 0.5);
   position:fixed;
   top:0;
   left: 0;
   z-index: 10000;
-  transition: all 0.5s ease;
+  //transition: all 0.5s ease;
   overflow: hidden;
   .content{
     position: absolute;
@@ -35,9 +34,10 @@
   }
 }
 
-.react-amazing-drawer-enter,.react-amazing-drawer-leave-active{
+.react-amazing-drawer-enter,.react-amazing-drawer-leave-active, .react-amazing-drawer-appear{
   &.react-amazing-drawer-mask{
     opacity: 0;
+    background: red;
     transition: all 0.5s ease;
     .content{
       transition: all 0.5s ease;
@@ -57,9 +57,10 @@
   }
 }
 
-.react-amazing-drawer-enter-active{
+.react-amazing-drawer-enter-active, .react-amazing-drawer-appear-active{
   &.react-amazing-drawer-mask{
     opacity: 1;
+    background: blue;
     transition: all 0.5s ease;
     .content{
       transition: all 0.5s ease;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Chat from 'Component/Chat';
-import Drawer from 'Component/Drawer';
+import Drawer from 'Component/DrawerWrapper';
 import { Table, Button, Calendar, Tag } from 'antd';
 const { CheckableTag } = Tag;
 const userInfoStore = {
@@ -76,8 +76,8 @@ class Home extends Component {
     return (<div>
       <Button onClick={this.openDrawer}>打开抽屉</Button>;
       <Table columns={columns} dataSource={data} pagination={{ pageSize: 50 }} scroll={{ y: 240 }} />
-      <Drawer visible={this.state.drawerVisible} direction="BOTTOM" onClose={this.closeDrawer}>
-        天哪
+      <Drawer visible={this.state.drawerVisible} direction="LEFT" onClose={this.closeDrawer}>
+
       </Drawer>
       <div className="tag-box">
         <div>

@@ -43,6 +43,8 @@ class Drawer extends Component {
         component="div"
         transitionEnterTimeout={duration}
         transitionLeaveTimeout={duration}
+        transitionAppear={true}
+        transitionAppearTimeout={duration}
       >
         {
           visible ? <div
@@ -83,7 +85,7 @@ Drawer.defaultProps = {
   visible: false,
   mask: true,
   width: 600,
-  duration: 800,
+  duration: 500,
   direction: 'RIGHT'
 }
 
