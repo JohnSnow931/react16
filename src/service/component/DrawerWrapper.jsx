@@ -24,7 +24,7 @@ class App extends React.Component {
   render() {
     const {getFieldDecorator} = this.props.form;
     return (
-      <Drawer visible={this.props.visible} onClose={this.props.onClose}>
+      <Drawer visible={this.props.visible} onClose={this.props.onClose} direction="BOTTOM" duration={500}>
         <Form onSubmit={this.handleSubmit}>
           <FormItem
             label="Note"

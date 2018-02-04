@@ -6,16 +6,21 @@ import PropTypes from 'prop-types';
 import './Drawer.scss' ;
 
 
-class Drawer extends Component {
+class ReactSimpleDrawer extends Component {
   constructor(props){
     super(props);
     // 创建div,用户渲染抽屉
     const doc = window.document;
     this.node = doc.createElement('div');
-    this.node.id = 'react-amazing-drawer';
+    this.node.id = 'react-simple-drawer';
     doc.body.appendChild(this.node);
   }
 
+  componentWillUnmount(){
+    const doc = window.document;
+    const drawerNode = document.getElementById('react-simple-drawer');
+    doc.removeChild(drawerNode);
+  }
   /**
    * 关闭时的回调
    * @param e
@@ -37,6 +42,12 @@ class Drawer extends Component {
   }
   render(){
     const { visible, width, duration, direction } = this.props;
+    const directionConstant = {
+      TOP: 450,
+      BOTTOM: 450,
+      RIGHT: 600,
+      LEFT: 600,
+    }
     return createPortal(
       <ReactCSSTransitionGroup
         transitionName="react-amazing-drawer"
@@ -51,8 +62,17 @@ class Drawer extends Component {
             onClick={this.onClose}
             key="react-amazing-drawer"
             className="react-amazing-drawer-mask"
+            style={{
+              animationDuration: `${duration}ms`
+            }}
           >
-            <div className={`content ${direction.toLowerCase()}`} onClick={this.preventClick}>
+            <div
+              className={`content ${direction.toLowerCase()}`}
+              onClick={this.preventClick}
+              style={{
+                animationDuration: `${duration}ms`
+              }}
+            >
               {this.props.children}
             </div>
           </div> : ''
@@ -62,11 +82,10 @@ class Drawer extends Component {
   }
 }
 
-Drawer.propTypes = {
+ReactSimpleDrawer.propTypes = {
   visible : PropTypes.bool.isRequired, // 控制抽屉的打开/关闭😀
   mask: PropTypes.bool, // 是否显示遮罩
   onClose: PropTypes.func, // 关闭时的回调😀
-  onOpen: PropTypes.func, // 打开时的回调
   width: PropTypes.number, // 宽度
   duration: PropTypes.number, // 打开/关闭时间 🌀
   maskStyle: PropTypes.any, // 给遮罩层的样式
@@ -81,12 +100,15 @@ Drawer.propTypes = {
   scroll: PropTypes.bool // 内容从超过容器高宽时是否显示滚动条
 };
 
-Drawer.defaultProps = {
+ReactSimpleDrawer.defaultProps = {
   visible: false,
   mask: true,
   width: 600,
+  height: 450,
   duration: 500,
-  direction: 'RIGHT'
+  direction: 'RIGHT',
+  maskClass: '',
+  contentClass: ''
 }
 
-export default Drawer;
+export default ReactSimpleDrawer;
